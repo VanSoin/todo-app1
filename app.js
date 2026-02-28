@@ -51,6 +51,36 @@ document.addEventListener('DOMContentLoaded', () => {
     if(e.key === 'Enter') addTodo(input.value);
   });
 
+  // theme toggle logic
+  const themeToggle = document.getElementById('theme-toggle');
+  function applyTheme(theme){
+    if(theme === 'dark'){
+      document.body.classList.add('dark');
+      themeToggle.textContent = '☀️';
+      themeToggle.setAttribute('aria-label','Switch to light theme');
+    } else {
+      document.body.classList.remove('dark');
+      themeToggle.textContent = '🌙';
+      themeToggle.setAttribute('aria-label','Switch to dark theme');
+    }
+  }
+
+  // load saved preference
+  const saved = localStorage.getItem('theme');
+  if(saved === 'dark' || saved === 'light'){
+    applyTheme(saved);
+  } else {
+    // default to light
+    applyTheme('light');
+  }
+
+  themeToggle.addEventListener('click', () => {
+    const isDark = document.body.classList.toggle('dark');
+    const newTheme = isDark ? 'dark' : 'light';
+    localStorage.setItem('theme', newTheme);
+    applyTheme(newTheme);
+  });
+
   // event delegation for delete buttons
   list.addEventListener('click', (e) => {
     if(e.target && e.target.classList.contains('delete-btn')){
