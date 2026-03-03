@@ -14,6 +14,12 @@
 
       <form id="todo-form" class="todo-form" action="#" onsubmit="return false;">
         <input id="todo-input" type="text" placeholder="Add a todo..." aria-label="Add todo" />
+        <select id="priority-input" aria-label="Select priority">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+        <input id="date-input" type="date" aria-label="Set due date" />
         <button id="add-btn" type="button">Add</button>
       </form>
 
